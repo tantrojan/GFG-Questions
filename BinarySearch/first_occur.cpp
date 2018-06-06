@@ -34,6 +34,7 @@ int main()
 	for(i=0;i<n;i++)cin>>arr[i];
 	int key;
 	cin>>key;
+	sort(arr,arr+n);
 	int res=first_occur(arr,0,n-1,key);
 	cout<<res;
 	// res=Floor(arr,0,n-1,key);
