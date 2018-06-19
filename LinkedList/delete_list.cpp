@@ -1,10 +1,10 @@
-//Print reverse of a linked list
+//Deleting a linked list
 #include<bits/stdc++.h>
 using namespace std;
 
 struct node{
 	int data;
-	node* next;
+	node *next;
 };
 
 node* getNode(int x)
@@ -15,21 +15,22 @@ node* getNode(int x)
 	return n;
 }
 
-node print_reverse(node **h)
+void deletelist(node **h)
 {
 	if((*h)!=NULL)
 	{
-		print_reverse(&((*h)->next));
-		cout<<(*h)->data<<' ';
+		deletelist(&((*h)->next));
+		(*h)=NULL;
+		delete(*h);
 	}
 }
 
 int main()
 {
 	node *head=NULL;
-	int n,i;
+	int n;
 	cin>>n;
-	for(i=0;i<n;i++)
+	while(n--)
 	{
 		int x;
 		cin>>x;
@@ -47,8 +48,8 @@ int main()
 			}
 			j->next=getNode(x);
 		}
-		// cout<<"yes";
 	}
-	print_reverse(&head);
+	deletelist(&head);
 	return 0;
+
 }

@@ -1,4 +1,4 @@
-// Reverse a linked list
+// Palindrome check
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -15,25 +15,12 @@ node* getNode(int x)
 	n->next=NULL;
 	return n;
 }
-node *newhead=NULL;
-node* reverse_list_recurse(node** h)
-{
-	node *head=*h;
-	if(head==NULL || head->next==NULL)
-	{	
-		newhead=head;
-		return head;
-	}
-	reverse_list_recurse(&(head->next));
-	head->next->next=head;
-	head->next=NULL;
-	return (head);
-}
 
 int main()
 {
 	int n;
 	cin>>n;
+	stack<int> st;
 	node *head=NULL,*rear=NULL;
 	while(n--)
 	{
@@ -50,10 +37,20 @@ int main()
 			rear=rear->next;
 		}
 	}	
-	reverse_list_recurse(&head);
-	for(node* i=newhead;i!=NULL;i=i->next)
+	for(node* i=head;i!=NULL;i=i->next)
 	{
-		cout<<i->data<<' ';
+		st.push(i->data);
 	}
+	int flag=1;
+	for(node* i=head;i!=NULL;i=i->next)
+	{
+		if(st.top()!=(i->data))
+		{
+			flag=0;
+			break;
+		}
+		st.pop();
+	}
+	cout<<flag;
 	return 0;
 }
